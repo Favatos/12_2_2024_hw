@@ -38,9 +38,12 @@ namespace _12_2_2024_hw
 
         private void Timer_Tick(object? sender, EventArgs e)
         {
-            for(int i = 0; i < Processes.Count; i++)
+            Processes.Clear();
+            Process[] p = Process.GetProcesses();
+            p = p.OrderBy(p => p.ProcessName).ToArray();
+            foreach (Process process in p)
             {
-                Processes[i].Refresh();
+                Processes.Add(process);
             }
         }
 
